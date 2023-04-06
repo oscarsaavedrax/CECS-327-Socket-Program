@@ -13,10 +13,18 @@ def main():
     try:
         # Use ipaddress library to verify input is an IP address
         ip = ipa.ip_address(input("Enter the server IP address: "))
-        print(ip)
+        # Prompt user for the port number
+        port = int(input("Enter the server port number: "))
+        
+        # Validate port number is in acceptable range
+        if((1 <= port <= 65535)):
+            print(ip)
+            print(port)
+        else:
+            print("Error: Invalid port number")
+            
     except Exception as error:
         print("Error: ", error)
-    
     
 if __name__ == "__main__":
     main()
