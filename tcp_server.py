@@ -10,6 +10,7 @@ import socket
 def main(ip, port):
     # Create a socket instance with IPv4 and TCP
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        print("TCP SOCKET SERVER PROGRAM\n")
         # Bind the socket to the address
         s.bind((ip, port))
         # Enable server to accept connections, only 1 unacceptable connection allowed
@@ -18,6 +19,7 @@ def main(ip, port):
         conn, addr = s.accept()
         with conn:
             print("Connected by", addr)
+            print("Server is listening...")
             # Infinite loop to send and receive multiple messages to/from client
             while True:
                 # Get message from client up to 1024 bytes
@@ -25,10 +27,14 @@ def main(ip, port):
                 # If no messages then exit
                 if not message:
                     break
+                print("Message received from client")
                 # Reply to client with message in all CAPS
                 print("Message: ", message)
                 conn.sendall(message.upper())
-            
+                print("Response sent to client")
+    
+    print("\nCLOSING TCP SOCKET SERVER PROGRAM")
+    
 if __name__ == "__main__":
     # Create a parser to handle the commandline arguments
     parser = agp.ArgumentParser(description="Echo server")
