@@ -8,7 +8,7 @@ import socket
 import ipaddress as ipa
 
 def main():
-    # Prompt message
+    # Start message
     print("TCP SOCKET CLIENT PROGRAM\n")
     
     # Prompt user for the user for the IP address
@@ -40,6 +40,7 @@ def main():
                         print()
                 # Close the socket instance
                 s.close()
+                print("\nCLOSING TCP SOCKET CLIENT PROGRAM")
         else:
             print("ERROR: Invalid port number")
             return
