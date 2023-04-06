@@ -2,6 +2,8 @@
 # Developer: Oscar Saavedra
 # Date: 04/07/2023
 
+# Import socket library
+import socket
 # Import IP Address library
 import ipaddress as ipa
 
@@ -19,16 +21,20 @@ def main():
         # Validate port number is in acceptable range
         if((1 <= port <= 65535)):
             
-            # Infinite loop to allow user to send multiple messages to server
-            while True:
-                # Prompt user for their message
-                message = input("Enter a message (enter \"quit\" to exit): ")
-                
-                # Check sentinel value
-                if message.lower() == "exit":
-                    break
-                
-                print(ip, " ", port, " ", message)
+            # Create a socket instance with IPv4 and TCP
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                # Connect the client with the server
+                s.connect((str(ip), port))
+                # Infinite loop to allow user to send multiple messages to server
+                while True:
+                    # Prompt user for their message
+                    message = input("Enter a message (enter \"quit\" to exit): ")
+                    # Check sentinel value
+                    if message.lower() == "quit":
+                        break
+                    else:
+                        # Send the message to the server
+                        s.sendall(message.encode("utf-8"))
         else:
             print("ERROR: Invalid port number")
             return
