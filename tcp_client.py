@@ -20,7 +20,6 @@ def main():
         
         # Validate port number is in acceptable range
         if((1 <= port <= 65535)):
-            
             # Create a socket instance with IPv4 and TCP
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 # Connect the client with the server
@@ -35,6 +34,12 @@ def main():
                     else:
                         # Send the message to the server
                         s.sendall(message.encode("utf-8"))
+                        # Receive reply from the server
+                        reply = s.recv(1024)
+                        print("\nReply from server: ", reply)
+                        print()
+                # Close the socket instance
+                s.close()
         else:
             print("ERROR: Invalid port number")
             return
