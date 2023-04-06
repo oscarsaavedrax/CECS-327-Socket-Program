@@ -7,7 +7,7 @@ import ipaddress as ipa
 
 def main():
     # Prompt message
-    print("TCP SOCKET CLIENT PROGRAM\n\n")
+    print("TCP SOCKET CLIENT PROGRAM\n")
     
     # Prompt user for the user for the IP address
     try:
@@ -18,13 +18,20 @@ def main():
         
         # Validate port number is in acceptable range
         if((1 <= port <= 65535)):
+            
+            # Prompt user for their message
+            message = input("Enter a message (enter \"quit\" to exit): ")
+            
             print(ip)
             print(port)
+            print(message)
         else:
-            print("Error: Invalid port number")
-            
+            print("ERROR: Invalid port number")
+            return
+    # Handle invalid IP address exception
     except Exception as error:
-        print("Error: ", error)
+        print("ERROR: ", error)
+        return
     
 if __name__ == "__main__":
     main()
