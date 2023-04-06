@@ -19,12 +19,16 @@ def main():
         # Validate port number is in acceptable range
         if((1 <= port <= 65535)):
             
-            # Prompt user for their message
-            message = input("Enter a message (enter \"quit\" to exit): ")
-            
-            print(ip)
-            print(port)
-            print(message)
+            # Infinite loop to allow user to send multiple messages to server
+            while True:
+                # Prompt user for their message
+                message = input("Enter a message (enter \"quit\" to exit): ")
+                
+                # Check sentinel value
+                if message.lower() == "exit":
+                    break
+                
+                print(ip, " ", port, " ", message)
         else:
             print("ERROR: Invalid port number")
             return
