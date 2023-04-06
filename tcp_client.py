@@ -2,8 +2,21 @@
 # Developer: Oscar Saavedra
 # Date: 04/07/2023
 
+# Import IP Address library
+import ipaddress as ipa
+
 def main():
-    print("client")
+    # Prompt message
+    print("TCP SOCKET CLIENT PROGRAM\n\n")
+    
+    # Prompt user for the user for the IP address
+    try:
+        # Use ipaddress library to verify input is an IP address
+        ip = ipa.ip_address(input("Enter the server IP address: "))
+        print(ip)
+    except Exception as error:
+        print("Error: ", error)
+    
     
 if __name__ == "__main__":
     main()
